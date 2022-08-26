@@ -37,8 +37,69 @@ function generatePassword() {
     inputLower = confirm("Are lowercase letters required?");
     inputUpper = confirm("Are uppercase letters required?");
   };
+
+//Else if statement for users choices
+  
+if (inputCharacter && inputNumber && inputUpper && inputLower) {
+  selections = character.concat(number, letters, lettersUpper);
+}
+
+//for 3 of 4 options chosen
+else if (inputCharacter && inputNumber && inputUpper){
+  selections = character.concat(number, lettersUpper);
+}
+else if (inputCharacter && inputNumber && inputLower) {
+  selections = character.concat(number, letters);
+}
+else if (inputCharacter && inputLower && inputUpper) {
+  selections = character.concat(letters, inputUpper);
+}
+else if (inputNumber && inputLower && inputUpper) {
+  selections = number.concat(letters, lettersUpper);
+}
+
+//for 2 of 4 options chosen
+else if (inputCharacter && inputNumber) {
+  selections = character.concat(number);
+}  
+else if (inputCharacter && inputLower) {
+  selections = character.concat(letters);
+} 
+else if (inputCharacter && inputUpper) {
+  selections = character.concat(lettersUpper);
+}
+else if (inputLower && inputNumber) {
+  selections = letters.concat(number);
+} 
+else if (inputLower && inputUpper) {
+  selections = letters.concat(lettersUpper);
+} 
+else if (inputNumber && inputUpper) {
+  selections = number.concat(lettersUpper);
+}
+// for 1 positive option
+else if (inputCharacter) {
+  selections = character;
+}
+else if (inputNumber) {
+  selections = number;
+}
+else if (inputLower) {
+  selections = alpha;
+}
+else if (inputUpper) {
+  selections = space.concat(lettersUpper);
 };
 
+//this variable is an array placeholder for user gnerated amout of length
+result = [];
+
+//random selection for all variables:
+for (var i = 0; i < enter; i++) {
+  var pickSelections = selections[Math.floor(Math.random() * selections.length)];
+  result.push(pickSelections);
+}
+};
 
 // Write password to the #password input
 function writePassword() {
@@ -47,7 +108,7 @@ function writePassword() {
 
   passwordText.value = password;
 
-}
+};
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
