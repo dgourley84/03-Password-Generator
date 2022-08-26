@@ -31,7 +31,12 @@ function generatePassword() {
     alert("Number of characters needed");
   } else if (enter < 8 || enter > 128){
     enter = parseInt(prompt("Must be between 8 and 128 characters!"));
-  }
+  } else {
+    inputNumber = confirm("Are numbers required?");
+    inputCharacter = confirm("Are special characters required?");
+    inputLower = confirm("Are lowercase letters required?");
+    inputUpper = confirm("Are uppercase letters required?");
+  };
 };
 
 
