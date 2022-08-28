@@ -35,6 +35,7 @@ function generatePassword() {
     inputUpper = confirm("Are uppercase letters required?");
   };
 
+console.log(generatePassword);
 //Else if statement for users choices
   
 if (inputCharacter && inputNumber && inputUpper && inputLower) {
