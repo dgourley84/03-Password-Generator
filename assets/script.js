@@ -1,3 +1,10 @@
+//Global constants and variables
+
+const uppercaseChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const lowercaseChar = "abcdefghijklmnopqrstuvwxyz"
+const number = "1234567890"
+const specialChar = " \"!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+
 // Get references to the #generate element
 
 var generateBtn = document.querySelector("#generate");
@@ -25,26 +32,52 @@ function generatePassword() {
   } 
 
 var selction = "";
+
 console.log (passwordLength);
+
+let password = "";
 
 // create secltions based on the criteria 
 if(inputUpper){
-  selction = selction + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  selction = selction + uppercaseChar;
+  // randomly select a value from letters
+  let fixedUpper = uppercaseChar[Math.floor (Math.random() * uppercaseChar.length)]; 
+  // this value will be added to password
+  password = password + fixedUpper;
+  // reduce the password lenght by one
+  passwordLength--;
 }
 
 if(inputLower) {
-  selction = selction + "abcdefghijklmnopqrstuvwxyz";
+  selction = selction + lowercaseChar;
+  // randomly select a value from  lower case letters
+  let fixedLower = lowercaseChar[Math.floor (Math.random() * lowercaseChar.length)]; 
+  // this value will be added to password
+  password = password + fixedLower;
+  // reduce the password lenght by one
+  passwordLength--;
 }
 
 if(inputNumber) {
-  selction = selction + "1234567890";
+  selction = selction + number;
+  // randomly select a value from numbers
+  let fixedNumber = number[Math.floor (Math.random() * number.length)]; 
+  // this value will be added to password
+  password = password + fixedNumber;
+  // reduce the password lenght by one
+  passwordLength--;
 }
+
 
 if(inputCharacter) { 
-  selction = selction + " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+  selction = selction + specialChar;
+  // randomly select a value from characters
+  let fixedspecialChar = specialChar[Math.floor (Math.random() * specialChar.length)]; 
+  // this value will be added to password
+  password = password + fixedspecialChar;
+  // reduce the password lenght by one
+  passwordLength--;
 }
-
-let password = "";
 
 for (var i = 0; i < passwordLength; i++){
   var randomSelection = selction[Math.floor (Math.random() * selction.length)] 
@@ -63,3 +96,10 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+
+//check the password contains all elements or elements request
+
+// if uppercase is selected ensure password output has an uppercase
+
+// loop over the password one character at a time and check whether one value 
