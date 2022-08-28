@@ -1,102 +1,57 @@
-// input variables
-var enter;
-var inputNumber;
-var inputCharacter;
-var inputUpper
-var inputLower
+// Get references to the #generate element
 
-// Special characters listing
-character = ["!", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", "\:", "\;", " < ", "=", " > ", " ? ", "@", "[", "\\", "]", " ^ ", "_", "`", "{", "|", "}", "~"];
-// Number values 
-number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-// lowercase letters
-letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-// uppercase conversion
-space =[];
-//covert lower case to upercase
-var toUpper = function (x) {
-  return x.toUpperCase();
-}
-// variable for uppercase
-lettersUpper = letters.map(toUpper);
-
-//Start function to generate
+var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
-  enter = parseInt(prompt("How many characters would you like your password to be?\nChoose between 8 and 128"));
-  if(!enter){
-    alert("Number of characters needed");
-  } else if (enter < 8 || enter > 128){
-    enter = parseInt(prompt("Must be between 8 and 128 characters!"));
-  } else {
-    inputNumber = confirm("Are numbers required?");
-    inputCharacter = confirm("Are special characters required?");
-    inputLower = confirm("Are lowercase letters required?");
-    inputUpper = confirm("Are uppercase letters required?");
-  };
+  passwordLength = Number(prompt("How many characters would you like your password to be?\nChoose between 8 and 128"));
 
-console.log(generatePassword);
-//Else if statement for users choices
+  if(isNaN(passwordLength)) {
+    alert("Please enter number")
+    return;
+}
+  if (passwordLength < 8 || passwordLength > 128){
+    passwordLength = parseInt(prompt("Must be between 8 and 128 characters!"));
+    return;
+  } 
+    
+  const inputNumber = confirm("Are numbers required?");
+  const inputCharacter = confirm("Are special characters required?");
+  const inputLower = confirm("Are lowercase letters required?");
+  const inputUpper = confirm("Are uppercase letters required?");
   
-if (inputCharacter && inputNumber && inputUpper && inputLower) {
-  selections = character.concat(number, letters, lettersUpper);
+  if(!inputCharacter && !inputLower && !inputUpper && !inputNumber) {
+    alert("Please select one input criteria");
+    return;
+  } 
+
+let selction = "";
+console.log (passwordLength);
+
+// create secltions based on the criteria
+if(inputUpper){
+  selction = selction + "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 }
 
-//for 3 of 4 options chosen
-else if (inputCharacter && inputNumber && inputUpper){
-  selections = character.concat(number, lettersUpper);
-}
-else if (inputCharacter && inputNumber && inputLower) {
-  selections = character.concat(number, letters);
-}
-else if (inputCharacter && inputLower && inputUpper) {
-  selections = character.concat(letters, inputUpper);
-}
-else if (inputNumber && inputLower && inputUpper) {
-  selections = number.concat(letters, lettersUpper);
+if(inputLower) {
+  selction = selction + "abcdefghijklmnopqrstuvwxyz";
 }
 
-//for 2 of 4 options chosen
-else if (inputCharacter && inputNumber) {
-  selections = character.concat(number);
-}  
-else if (inputCharacter && inputLower) {
-  selections = character.concat(letters);
-} 
-else if (inputCharacter && inputUpper) {
-  selections = character.concat(lettersUpper);
+if(inputNumber) {
+  selction = selction + "1234567890";
 }
-else if (inputLower && inputNumber) {
-  selections = letters.concat(number);
-} 
-else if (inputLower && inputUpper) {
-  selections = letters.concat(lettersUpper);
-} 
-else if (inputNumber && inputUpper) {
-  selections = number.concat(lettersUpper);
-}
-// for 1 positive option
-else if (inputCharacter) {
-  selections = character;
-}
-else if (inputNumber) {
-  selections = number;
-}
-else if (inputLower) {
-  selections = alpha;
-}
-else if (inputUpper) {
-  selections = space.concat(lettersUpper);
-};
 
-//this variable is an array placeholder for user gnerated amout of length
-result = [];
-
-//random selection for all variables:
-for (var i = 0; i < enter; i++) {
-  var pickSelections = selections[Math.floor(Math.random() * selections.length)];
-  result.push(pickSelections);
+if(inputCharacter) { 
+  selction = selction + "!@#$%^&*()";
 }
+
+let password = "";
+
+for (let i = 0; i < passwordLength; i++){
+  const randomSelection = selction[ Math.floor (Math.random() * selction.length)] 
+  password = password + randomSelection;
+}
+
+return password;
 };
 
 // Get references to the #generate element
