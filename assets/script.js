@@ -20,11 +20,8 @@ var toUpper = function (x) {
 // variable for uppercase
 lettersUpper = letters.map(toUpper);
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
-
-
 //Start function to generate
+
 function generatePassword() {
   enter = parseInt(prompt("How many characters would you like your password to be?\nChoose between 8 and 128"));
   if(!enter){
@@ -100,6 +97,9 @@ for (var i = 0; i < enter; i++) {
   result.push(pickSelections);
 }
 };
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
